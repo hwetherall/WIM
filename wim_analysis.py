@@ -154,7 +154,8 @@ def main():
     files = {
         "AFL": "WIM Raw Data - AFL.csv",
         "Ligue 1": "WIM Raw Data - Ligue 1.csv",
-        "Premier League": "WIM Raw Data - Prem League.csv"
+        "Premier League": "WIM Raw Data - Prem League.csv",
+        "A-League": "WIM Raw Data - A-League.csv"
     }
     
     # Get the directory where this script is located
