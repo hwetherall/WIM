@@ -103,6 +103,18 @@ def calculate_metrics(df: pd.DataFrame, league_name: str) -> pd.DataFrame:
         ratios = group[pf_col] / group[pa_col]
         wim = np.mean(np.abs(np.log(ratios)))
         season_stats['WIM'] = wim
+
+        # 1b. Calculate WIM-TB (Top 4 / Bottom 4)
+        # Sort by Ratio to identify Top/Bottom performance
+        sorted_ratios = ratios.sort_values(ascending=False)
+        if len(sorted_ratios) >= 8:
+            top_4 = sorted_ratios.head(4)
+            bottom_4 = sorted_ratios.tail(4)
+            tb_ratios = pd.concat([top_4, bottom_4])
+            wim_tb = np.mean(np.abs(np.log(tb_ratios)))
+            season_stats['WIM_TB'] = wim_tb
+        else:
+            season_stats['WIM_TB'] = None
         
         # 2. Calculate Noll-Scully & Win % SD
         # Requires Wins and Games Played columns
@@ -247,13 +259,35 @@ def main():
     pd.set_option('display.float_format', '{:.4f}'.format)
     
     # Reorder columns for logical reading
-    cols_order = ['League', 'Season', 'Teams', 'WIM', 'Noll_Scully', 'WinPct_SD', 'HHI']
+    cols_order = ['League', 'Season', 'Teams', 'WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD', 'HHI']
     print(final_df[cols_order].to_string(index=False))
     
     # Save results to CSV
     output_path = os.path.join(script_dir, "wim_full_results.csv")
     final_df.to_csv(output_path, index=False)
     print(f"\nResults saved to: {output_path}")
+
+    # ==========================================================================
+    # 3b. LEAGUE AVERAGES TABLE
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("LEAGUE AVERAGES (All Seasons)")
+    print("=" * 80)
+    
+    # Group by League and calculate mean for each metric
+    avg_cols = ['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD', 'HHI']
+    league_averages = final_df.groupby('League')[avg_cols].mean()
+    
+    # Sort by WIM descending (most imbalanced at top)
+    league_averages = league_averages.sort_values('WIM', ascending=False)
+    
+    print(league_averages.to_string())
+    
+    # Save league averages to CSV
+    avg_output_path = os.path.join(script_dir, "wim_league_averages.csv")
+    league_averages.to_csv(avg_output_path)
+    print(f"\nLeague averages saved to: {avg_output_path}")
 
     # ==========================================================================
     # 4. CORRELATION CHECK (The "Hypothesis 3" Test)
@@ -265,7 +299,7 @@ def main():
     
     # Calculate correlation between WIM and the Competitors
     # We drop NaNs in case some leagues didn't have Win/Games data
-    corr_matrix = final_df[['WIM', 'Noll_Scully', 'WinPct_SD']].corr()
+    corr_matrix = final_df[['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD']].corr()
     print(corr_matrix)
     
     print("-" * 80)

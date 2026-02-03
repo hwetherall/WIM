@@ -157,7 +157,8 @@ def main():
         "Premier League": "WIM Raw Data - Prem League.csv",
         "A-League": "WIM Raw Data - A-League.csv",
         "MLS": "WIM Raw Data - MLS.csv",
-        "NFL": "WIM Raw Data - NFL.csv"
+        "NFL": "WIM Raw Data - NFL.csv",
+        "NBA": "WIM Raw Data - NBA.csv"
     }
     
     # Get the directory where this script is located

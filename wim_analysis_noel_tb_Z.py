@@ -1,6 +1,7 @@
 # ==============================================================================
 # WIM (Wetherall Imbalance Measure) - Analysis Suite
-# Includes: WIM, Noll-Scully, Win % Std Dev, HHI
+# Includes: WIM, WIM_TB, Noll-Scully, Win % Std Dev, HHI
+# Plus: Z-Score Normalization for Cross-League Comparison
 # ==============================================================================
 
 import pandas as pd
@@ -103,6 +104,18 @@ def calculate_metrics(df: pd.DataFrame, league_name: str) -> pd.DataFrame:
         ratios = group[pf_col] / group[pa_col]
         wim = np.mean(np.abs(np.log(ratios)))
         season_stats['WIM'] = wim
+
+        # 1b. Calculate WIM-TB (Top 4 / Bottom 4)
+        # Sort by Ratio to identify Top/Bottom performance
+        sorted_ratios = ratios.sort_values(ascending=False)
+        if len(sorted_ratios) >= 8:
+            top_4 = sorted_ratios.head(4)
+            bottom_4 = sorted_ratios.tail(4)
+            tb_ratios = pd.concat([top_4, bottom_4])
+            wim_tb = np.mean(np.abs(np.log(tb_ratios)))
+            season_stats['WIM_TB'] = wim_tb
+        else:
+            season_stats['WIM_TB'] = None
         
         # 2. Calculate Noll-Scully & Win % SD
         # Requires Wins and Games Played columns
@@ -233,6 +246,53 @@ def main():
     final_df = pd.concat(all_data, ignore_index=True)
     
     # ==========================================================================
+    # 2b. Z-SCORE NORMALIZATION (Cross-League Comparison)
+    # ==========================================================================
+    # Formula: Z = (Value - LeagueMean) / LeagueStdDev
+    # This allows comparing "relative volatility" across sports with different
+    # scoring volumes (e.g., NBA ~100pts vs Soccer ~2 goals)
+    
+    print("\n" + "=" * 80)
+    print("CALCULATING Z-SCORES FOR CROSS-LEAGUE COMPARISON")
+    print("=" * 80)
+    
+    def calculate_zscore_column(df, col, group_col='League'):
+        """
+        Calculate Z-score for a column within each group.
+        Returns NaN if std=0 or group has only 1 data point.
+        """
+        result = pd.Series(index=df.index, dtype=float)
+        
+        for league in df[group_col].unique():
+            mask = df[group_col] == league
+            group_data = df.loc[mask, col]
+            
+            if len(group_data) <= 1:
+                # Cannot calculate Z-score with only 1 data point
+                result.loc[mask] = np.nan
+            else:
+                mean_val = group_data.mean()
+                std_val = group_data.std(ddof=1)  # Sample std dev
+                
+                if std_val == 0 or pd.isna(std_val):
+                    # All values identical, Z-score undefined
+                    result.loc[mask] = 0.0
+                else:
+                    result.loc[mask] = (group_data - mean_val) / std_val
+        
+        return result
+    
+    # Calculate Z-scores for each metric, grouped by League
+    final_df['WIM_Z'] = calculate_zscore_column(final_df, 'WIM')
+    final_df['WIM_TB_Z'] = calculate_zscore_column(final_df, 'WIM_TB')
+    final_df['NS_Z'] = calculate_zscore_column(final_df, 'Noll_Scully')
+    
+    print("Z-Scores calculated for WIM, WIM_TB, and Noll-Scully.")
+    print("  -> WIM_Z: Standard deviations from league's historical WIM mean")
+    print("  -> WIM_TB_Z: Standard deviations from league's historical WIM_TB mean")
+    print("  -> NS_Z: Standard deviations from league's historical Noll-Scully mean")
+    
+    # ==========================================================================
     # 3. REPORTING
     # ==========================================================================
     
@@ -246,14 +306,36 @@ def main():
     pd.set_option('display.max_rows', None)
     pd.set_option('display.float_format', '{:.4f}'.format)
     
-    # Reorder columns for logical reading
-    cols_order = ['League', 'Season', 'Teams', 'WIM', 'Noll_Scully', 'WinPct_SD', 'HHI']
+    # Reorder columns for logical reading (include Z-scores)
+    cols_order = ['League', 'Season', 'Teams', 'WIM', 'WIM_Z', 'WIM_TB', 'WIM_TB_Z', 'Noll_Scully', 'NS_Z', 'WinPct_SD', 'HHI']
     print(final_df[cols_order].to_string(index=False))
     
     # Save results to CSV
     output_path = os.path.join(script_dir, "wim_full_results.csv")
     final_df.to_csv(output_path, index=False)
     print(f"\nResults saved to: {output_path}")
+
+    # ==========================================================================
+    # 3b. LEAGUE AVERAGES TABLE
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("LEAGUE AVERAGES (All Seasons)")
+    print("=" * 80)
+    
+    # Group by League and calculate mean for each metric
+    avg_cols = ['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD', 'HHI']
+    league_averages = final_df.groupby('League')[avg_cols].mean()
+    
+    # Sort by WIM descending (most imbalanced at top)
+    league_averages = league_averages.sort_values('WIM', ascending=False)
+    
+    print(league_averages.to_string())
+    
+    # Save league averages to CSV
+    avg_output_path = os.path.join(script_dir, "wim_league_averages.csv")
+    league_averages.to_csv(avg_output_path)
+    print(f"\nLeague averages saved to: {avg_output_path}")
 
     # ==========================================================================
     # 4. CORRELATION CHECK (The "Hypothesis 3" Test)
@@ -265,7 +347,7 @@ def main():
     
     # Calculate correlation between WIM and the Competitors
     # We drop NaNs in case some leagues didn't have Win/Games data
-    corr_matrix = final_df[['WIM', 'Noll_Scully', 'WinPct_SD']].corr()
+    corr_matrix = final_df[['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD']].corr()
     print(corr_matrix)
     
     print("-" * 80)
@@ -309,6 +391,66 @@ def main():
     plot_path = os.path.join(script_dir, 'WIM_Chart.png')
     plt.savefig(plot_path, dpi=300)
     print(f"Chart saved to: {plot_path}")
+
+    # ==========================================================================
+    # 6. UNIVERSAL Z-SCORE VISUALIZATION (Cross-League Comparison)
+    # ==========================================================================
+    # This chart normalizes all leagues to their own historical mean/std
+    # so we can compare "relatively unbalanced" seasons across sports
+    
+    plt.figure(figsize=(14, 8))
+    
+    # Use distinct colors for each league
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2']
+    
+    for i, league in enumerate(leagues):
+        subset = final_df[final_df['League'] == league].dropna(subset=['WIM_Z'])
+        if len(subset) > 0:
+            # Shorten league names for legend
+            short_name = league.replace('WIM Raw Data - ', '')
+            plt.plot(subset['Season'], subset['WIM_Z'], 
+                     label=short_name, 
+                     marker=markers[i % len(markers)],
+                     color=colors[i % len(colors)],
+                     linewidth=2,
+                     markersize=6)
+    
+    # Reference lines
+    plt.axhline(0, color='black', linewidth=1.5, label='League Average (0)')
+    plt.axhline(2, color='red', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (+2σ)')
+    plt.axhline(-2, color='green', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (-2σ)')
+    
+    # Shaded regions for context
+    plt.axhspan(-1, 1, alpha=0.1, color='gray', label='Normal Range (±1σ)')
+    
+    plt.title('Universal WIM Z-Score: Cross-League Competitive Balance Comparison', fontsize=14)
+    plt.ylabel('WIM Z-Score (Std Deviations from League Mean)', fontsize=12)
+    plt.xlabel('Season', fontsize=12)
+    plt.legend(loc='upper left', fontsize=9, ncol=2)
+    plt.grid(True, alpha=0.3)
+    
+    # Set y-axis limits to show outliers clearly
+    plt.ylim(-3.5, 3.5)
+    
+    z_plot_path = os.path.join(script_dir, 'WIM_Universal_Z.png')
+    plt.savefig(z_plot_path, dpi=300, bbox_inches='tight')
+    print(f"Universal Z-Score chart saved to: {z_plot_path}")
+    
+    # ==========================================================================
+    # 7. Z-SCORE SUMMARY TABLE (Identify Outlier Seasons)
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("OUTLIER SEASONS (|Z| > 2.0) - Historically Unusual Imbalance")
+    print("=" * 80)
+    
+    outliers = final_df[np.abs(final_df['WIM_Z']) > 2.0][['League', 'Season', 'WIM', 'WIM_Z']].copy()
+    outliers = outliers.sort_values('WIM_Z', ascending=False)
+    
+    if len(outliers) > 0:
+        print(outliers.to_string(index=False))
+    else:
+        print("No outlier seasons found (all within ±2 standard deviations).")
 
 if __name__ == "__main__":
     main()
