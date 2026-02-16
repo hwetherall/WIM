@@ -1,260 +1,498 @@
 # ==============================================================================
-# WIM (Wetherall Imbalance Measure) - The Flight Pack
-# Author: The Flying Economist (feat. Gemini) - Python port
-# Date: Dec 2025
+# WIM (Wetherall Imbalance Measure) - Analysis Suite
+# Includes: WIM, WIM_TB, Noll-Scully, Win % Std Dev, HHI
+# Plus: Z-Score Normalization for Cross-League Comparison
+#
+# Data: AFL, Ligue 1, and Premier League extended to 2000/2001 season.
 # ==============================================================================
 
 import pandas as pd
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')  # Use non-interactive backend for terminal compatibility
+matplotlib.use('Agg')  # Non-interactive backend
 import matplotlib.pyplot as plt
 import re
 import os
+import glob
 
 # ==============================================================================
-# 1. THE WIM CALCULATOR FUNCTION
+# 1. METRIC CALCULATOR CORE
 # ==============================================================================
 
-def calculate_wim(df: pd.DataFrame, league_name: str) -> pd.DataFrame:
+def calculate_metrics(df: pd.DataFrame, league_name: str) -> pd.DataFrame:
     """
-    Takes a raw dataframe, cleans it, and returns the WIM score per season.
-    
-    WIM = Mean Absolute Log-Ratio of Points For / Points Against
-    A lower WIM indicates a more balanced league.
+    Calculates WIM, Noll-Scully, Win % Std Dev, and HHI per season.
     """
     
-    # A. Identify the Team column (it's usually 'Team' or 'Squad')
-    team_col = None
-    for col in df.columns:
-        if re.search(r'Team|Squad', col, re.IGNORECASE):
-            team_col = col
-            break
+    # --- A. Column Identification (Regex) ---
+    cols = df.columns.tolist()
     
-    if team_col is None:
-        print(f"Warning: Could not find team column for {league_name}")
+    # 1. Team Name
+    team_col = next((c for c in cols if re.search(r'^(Team|Squad|Club)$', c, re.IGNORECASE)), None)
+    
+    # 2. Points For / Against (for WIM)
+    pf_col = next((c for c in cols if re.search(r'^(For|GF|Points.?For|PF)$', c, re.IGNORECASE)), None)
+    pa_col = next((c for c in cols if re.search(r'^(Agn|GA|Points.?Against|PA)$', c, re.IGNORECASE)), None)
+    
+    # 3. Wins / Games Played (for Noll-Scully)
+    # Note: Look for exact 'W' or 'Wins' to avoid matching 'Draws'
+    w_col = next((c for c in cols if re.search(r'^(W|Wins|Won)$', c, re.IGNORECASE)), None)
+    
+    # Note: Look for 'P', 'MP' (Matches Played), 'G' (Games), 'GP', 'Matches', 'GamesPlayed'
+    gp_col = next((c for c in cols if re.search(r'^(P|MP|Games|Played|G|GP|Matches|GamesPlayed)$', c, re.IGNORECASE)), None)
+    
+    # Loss/Tie columns (for calculating Games Played if missing)
+    l_col = next((c for c in cols if re.search(r'^(L|Loss|Losses|Lost)$', c, re.IGNORECASE)), None)
+    t_col = next((c for c in cols if re.search(r'^(T|D|Ties|Draws)$', c, re.IGNORECASE)), None)
+    
+    # 4. Season/Year
+    year_col = next((c for c in cols if re.search(r'Year|Season', c, re.IGNORECASE)), None)
+
+    # Validate critical WIM columns
+    if not all([team_col, pf_col, pa_col, year_col]):
+        print(f"Skipping {league_name}: Missing core WIM columns (Team, PF, PA, or Year).")
+        print(f"Found: Team={team_col}, PF={pf_col}, PA={pa_col}, Year={year_col}")
         return None
-    
-    # B. Basic Cleaning - Remove header rows embedded in data
-    # Filter out rows where team column contains "Team", "Squad", "Ladder", or is empty
-    clean_df = df[~df[team_col].astype(str).str.contains(
-        r'Team|Squad|Ladder|Rk|^#$', case=False, na=True, regex=True
-    )].copy()
-    clean_df = clean_df[clean_df[team_col].notna()]
-    clean_df = clean_df[clean_df[team_col].astype(str).str.strip() != '']
-    
-    # C. Column Mapping (The "Rosetta Stone")
-    # Find Points For: 'For', 'GF', 'PointsFor'
-    for_col = None
-    for col in clean_df.columns:
-        if re.search(r'^For$|^GF$|^Points.?For', col, re.IGNORECASE):
-            for_col = col
-            break
-    
-    # Find Points Against: 'Agn', 'GA', 'PointsAgainst'
-    agn_col = None
-    for col in clean_df.columns:
-        if re.search(r'^Agn$|^GA$|^Points.?Against', col, re.IGNORECASE):
-            agn_col = col
-            break
-    
-    # Find Year/Season column
-    year_col = None
-    for col in clean_df.columns:
-        if re.search(r'Year|Season', col, re.IGNORECASE):
-            year_col = col
-            break
-    
-    # Check if we found the necessary columns
-    if for_col is None or agn_col is None:
-        print(f"Warning: Could not find scoring columns for {league_name}")
-        print(f"  Available columns: {list(clean_df.columns)}")
-        return None
-    
-    if year_col is None:
-        print(f"Warning: Could not find year/season column for {league_name}")
-        return None
-    
-    print(f"Processing {league_name}:")
-    print(f"  Team column: {team_col}")
-    print(f"  Points For column: {for_col}")
-    print(f"  Points Against column: {agn_col}")
-    print(f"  Year column: {year_col}")
-    
-    # D. Data Conversion
-    # Remove commas and convert to numeric
-    def clean_numeric(val):
-        if pd.isna(val):
-            return np.nan
-        val_str = str(val).replace(',', '')
-        try:
-            return float(val_str)
-        except ValueError:
-            return np.nan
-    
-    clean_df['PF'] = clean_df[for_col].apply(clean_numeric)
-    clean_df['PA'] = clean_df[agn_col].apply(clean_numeric)
-    clean_df['Season'] = clean_df[year_col].apply(clean_numeric)
-    
-    # Remove rows with invalid data (0 or NaN values to avoid log errors)
-    clean_df = clean_df[(clean_df['PF'] > 0) & (clean_df['PA'] > 0)]
-    clean_df = clean_df[clean_df['Season'].notna()]
-    
-    # E. The Calculation
-    # WIM = mean(abs(log(PF / PA))) per season
-    wim_results = clean_df.groupby('Season').apply(
-        lambda x: pd.Series({
-            'WIM': np.mean(np.abs(np.log(x['PF'] / x['PA']))),
-            'Teams': len(x),
-            'League': league_name
-        }),
-        include_groups=False
-    ).reset_index()
-    
-    # Convert Season to int for cleaner display
-    wim_results['Season'] = wim_results['Season'].astype(int)
-    
-    print(f"  Found {len(wim_results)} seasons\n")
-    
-    return wim_results
 
-
-# ==============================================================================
-# 2. LOAD AND PROCESS DATA
-# ==============================================================================
-
-def load_csv_smart(file_path: str) -> pd.DataFrame:
-    """
-    Loads a CSV file, handling cases where the first row is a season header
-    and the actual column names are in the second row.
-    """
-    # First, try reading normally
-    df = pd.read_csv(file_path)
+    # --- B. Data Cleaning ---
+    # Create a working copy
+    work_df = df.copy()
     
-    # Check if we got proper column names (look for Team, Squad, Rk, etc.)
-    has_team_col = any(re.search(r'Team|Squad', str(col), re.IGNORECASE) for col in df.columns)
+    # Clean numeric columns function
+    def clean_numeric(col_name):
+        if col_name:
+            # Convert to string, coerce errors, drop NaNs
+            work_df[col_name] = pd.to_numeric(work_df[col_name], errors='coerce')
+
+    clean_numeric(pf_col)
+    clean_numeric(pa_col)
+    clean_numeric(w_col)
+    clean_numeric(gp_col)
+    clean_numeric(l_col)
+    clean_numeric(t_col)
+    clean_numeric(year_col)
+
+    # Drop rows where critical data is NaN (e.g. headers in the middle of CSV)
+    work_df = work_df.dropna(subset=[pf_col, pa_col, year_col])
     
-    if not has_team_col:
-        # The first row might be a season header - check the second row for actual headers
-        # Read again, using the second row (index 1) as header and skip the first row
-        df = pd.read_csv(file_path, header=1)
+    # Calculate Games Played if missing (e.g. NFL)
+    if not gp_col and w_col and l_col:
+        print(f"  -> Calculating Games Played from Wins/Losses/Ties for {league_name}")
+        # Fill NaNs with 0 for calculation
+        w_vals = work_df[w_col].fillna(0)
+        l_vals = work_df[l_col].fillna(0)
+        t_vals = work_df[t_col].fillna(0) if t_col else 0
         
-        # If still no team column, the file might need row 0 as header after all
-        has_team_col = any(re.search(r'Team|Squad', str(col), re.IGNORECASE) for col in df.columns)
-        
-        if not has_team_col:
-            # Fall back to original read
-            df = pd.read_csv(file_path)
-    
-    return df
+        work_df['Calculated_GP'] = w_vals + l_vals + t_vals
+        gp_col = 'Calculated_GP'
 
+    # Handle Zeros for Logs (WIM specific fix)
+    # If Points For or Against is 0, bump to 1 to avoid -inf
+    work_df[pf_col] = work_df[pf_col].replace(0, 1)
+    work_df[pa_col] = work_df[pa_col].replace(0, 1)
+
+    # --- C. Calculation Loop (Per Season) ---
+    results = []
+    
+    for season, group in work_df.groupby(year_col):
+        season_stats = {
+            'League': league_name,
+            'Season': int(season),
+            'Teams': len(group)
+        }
+        
+        # 1. Calculate WIM
+        # Formula: Mean(Abs(Ln(PF/PA)))
+        ratios = group[pf_col] / group[pa_col]
+        wim = np.mean(np.abs(np.log(ratios)))
+        season_stats['WIM'] = wim
+
+        # 1b. Calculate WIM-TB (Top 4 / Bottom 4)
+        # Sort by Ratio to identify Top/Bottom performance
+        sorted_ratios = ratios.sort_values(ascending=False)
+        if len(sorted_ratios) >= 8:
+            top_4 = sorted_ratios.head(4)
+            bottom_4 = sorted_ratios.tail(4)
+            tb_ratios = pd.concat([top_4, bottom_4])
+            wim_tb = np.mean(np.abs(np.log(tb_ratios)))
+            season_stats['WIM_TB'] = wim_tb
+        else:
+            season_stats['WIM_TB'] = None
+        
+        # 2. Calculate Noll-Scully & Win % SD
+        # Requires Wins and Games Played columns
+        if w_col and gp_col and not group[w_col].isnull().all():
+            wins = group[w_col]
+            games = group[gp_col]
+            
+            # Win Percentage
+            # Handle division by zero if games=0
+            # Ensure float division by specifying dtype=float for the output array
+            win_pct = np.divide(wins, games, out=np.zeros_like(wins, dtype=float), where=games!=0)
+            
+            # Actual Std Dev (ASD)
+            # Use ddof=0 for Population Std Dev (standard in Noll-Scully papers)
+            asd = np.std(win_pct, ddof=0)
+            season_stats['WinPct_SD'] = asd
+            
+            # Ideal Std Dev (ISD)
+            # Formula: 0.5 / sqrt(Games)
+            # We use the average games played in the season to handle slight variances
+            avg_games = games.mean()
+            if avg_games > 0:
+                isd = 0.5 / np.sqrt(avg_games)
+                noll_scully = asd / isd
+                season_stats['Noll_Scully'] = noll_scully
+            else:
+                season_stats['Noll_Scully'] = None
+                
+            # HHI (Herfindahl-Hirschman Index) of Wins
+            # Share of total wins
+            total_wins = wins.sum()
+            if total_wins > 0:
+                win_shares = wins / total_wins
+                hhi = np.sum(win_shares ** 2)
+                season_stats['HHI'] = hhi
+            else:
+                season_stats['HHI'] = None
+                
+        else:
+            # If Win/Games data is missing, fill NaNs
+            season_stats['WinPct_SD'] = None
+            season_stats['Noll_Scully'] = None
+            season_stats['HHI'] = None
+            
+        results.append(season_stats)
+        
+    return pd.DataFrame(results)
+
+# ==============================================================================
+# 2. MAIN EXECUTION
+# ==============================================================================
+
+def load_csv_smart(file_path):
+    """
+    Loads a CSV, attempting to find the correct header row by looking for 'Team' or 'Squad'.
+    """
+    try:
+        # First, try reading normally
+        df = pd.read_csv(file_path)
+        
+        # Check if 'Team' or 'Squad' is in columns
+        cols = [str(c).lower() for c in df.columns]
+        if any(x in cols for x in ['team', 'squad', 'club']):
+            return df
+            
+        # If not, try to find the header in the first few rows
+        # Read first 10 rows as raw data
+        preview = pd.read_csv(file_path, header=None, nrows=10)
+        
+        header_row_idx = None
+        for idx, row in preview.iterrows():
+            row_str = row.astype(str).str.lower().tolist()
+            if any('team' in x or 'squad' in x for x in row_str):
+                header_row_idx = idx
+                break
+        
+        if header_row_idx is not None:
+            # Reload with correct header
+            # Note: header=header_row_idx means 0-based index of the row to use as header
+            return pd.read_csv(file_path, header=header_row_idx)
+            
+        return df
+    except Exception as e:
+        print(f"Error in smart load: {e}")
+        return pd.read_csv(file_path) # Fallback
 
 def main():
-    # Define the files to process
-    files = {
-        "AFL": "WIM Raw Data - AFL.csv",
-        "Ligue 1": "WIM Raw Data - Ligue 1.csv",
-        "Premier League": "WIM Raw Data - Prem League.csv",
-        "A-League": "WIM Raw Data - A-League.csv",
-        "MLS": "WIM Raw Data - MLS.csv",
-        "NFL": "WIM Raw Data - NFL.csv",
-        "NBA": "WIM Raw Data - NBA.csv"
-    }
-    
-    # Get the directory where this script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    raw_data_dir = os.path.join(script_dir, "Data", "Raw Data")
+    clean_data_dir = os.path.join(script_dir, "Data", "Clean Data")
+    # Filter for WIM Raw Data files to avoid processing the output file or other CSVs
+    csv_files = glob.glob(os.path.join(raw_data_dir, "WIM Raw Data*.csv"))
     
-    all_wim_data = []
-    
-    for league, filename in files.items():
-        file_path = os.path.join(script_dir, filename)
-        
-        if os.path.exists(file_path):
-            print(f"Loading {league}...")
-            
-            # Read CSV with smart header detection
-            raw_data = load_csv_smart(file_path)
-            
-            # Calculate WIM
-            league_wim = calculate_wim(raw_data, league)
-            
-            if league_wim is not None:
-                all_wim_data.append(league_wim)
-        else:
-            print(f"Warning: File not found: {file_path}")
-    
-    # Combine all results
-    if not all_wim_data:
-        print("Error: No data was processed successfully.")
+    if not csv_files:
+        print(f"No 'WIM Raw Data*.csv' files found in {raw_data_dir}.")
         return
-    
-    combined_df = pd.concat(all_wim_data, ignore_index=True)
-    
-    # ==========================================================================
-    # 3. VISUALIZATION - The "Money Plot"
-    # ==========================================================================
-    
-    plt.figure(figsize=(12, 8))
-    
-    # Define colors for each league
-    colors = {
-        'AFL': '#1f77b4',
-        'Ligue 1': '#ff7f0e', 
-        'Premier League': '#2ca02c'
-    }
-    
-    for league in combined_df['League'].unique():
-        league_data = combined_df[combined_df['League'] == league].sort_values('Season')
-        plt.plot(
-            league_data['Season'], 
-            league_data['WIM'],
-            marker='o',
-            markersize=8,
-            linewidth=2,
-            label=league,
-            color=colors.get(league, None)
-        )
-    
-    plt.ylim(bottom=0)
-    plt.xlabel('Season', fontsize=12)
-    plt.ylabel('WIM Score (Mean Log-Ratio Deviation)', fontsize=12)
-    plt.title('The Wetherall Imbalance Measure (WIM)', fontsize=16, fontweight='bold')
-    plt.suptitle('Comparing Competitive Balance Across Leagues (Lower is Better)', fontsize=11, y=0.92)
-    
-    # Add caption as text at bottom
-    plt.figtext(0.5, 0.01, '0 = Perfectly Balanced League', ha='center', fontsize=10, style='italic')
-    
-    plt.legend(loc='best', fontsize=10)
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-    
-    # Save the plot
-    plot_path = os.path.join(script_dir, 'WIM_Plot.png')
-    plt.savefig(plot_path, dpi=300, bbox_inches='tight')
-    print(f"\nPlot saved as '{plot_path}'")
-    
-    # ==========================================================================
-    # 4. PRINT SUMMARY TABLE
-    # ==========================================================================
-    
-    print("\n" + "=" * 50)
-    print("WIM Results Summary")
-    print("=" * 50)
-    
-    # Sort by League and Season for display
-    summary = combined_df.sort_values(['League', 'Season'])
-    print(summary.to_string(index=False))
-    
-    # Additional summary statistics
-    print("\n" + "=" * 50)
-    print("Average WIM by League (All Seasons)")
-    print("=" * 50)
-    avg_by_league = combined_df.groupby('League')['WIM'].agg(['mean', 'std', 'min', 'max'])
-    avg_by_league.columns = ['Mean WIM', 'Std Dev', 'Min WIM', 'Max WIM']
-    print(avg_by_league.to_string())
-    
-    return combined_df
 
+    all_data = []
+    
+    print("Starting Analysis... (WIM + Noll-Scully + Win% SD)")
+    print("Data: AFL, Ligue 1, Premier League extended to 2000/2001 season")
+    print("-" * 60)
+
+    for file_path in csv_files:
+        # Infer league name from filename (e.g., "AFL.csv" -> "AFL")
+        filename = os.path.basename(file_path)
+        
+        # Clean up filename for display
+        league_name = filename.replace('.csv', '').replace('WIM Raw Data (1).xlsx - ', '').strip()
+        
+        print(f"Processing: {league_name}")
+        
+        try:
+            df = load_csv_smart(file_path)
+            metric_df = calculate_metrics(df, league_name)
+            
+            if metric_df is not None:
+                all_data.append(metric_df)
+                print(f"  -> Processed {len(metric_df)} seasons.")
+            else:
+                print("  -> Failed to calculate metrics.")
+                
+        except Exception as e:
+            print(f"  -> Error reading file: {e}")
+
+    if not all_data:
+        print("No valid data processed.")
+        return
+
+    # Combine all results
+    final_df = pd.concat(all_data, ignore_index=True)
+    
+    # ==========================================================================
+    # 2b. Z-SCORE NORMALIZATION (Cross-League Comparison)
+    # ==========================================================================
+    # Formula: Z = (Value - LeagueMean) / LeagueStdDev
+    # This allows comparing "relative volatility" across sports with different
+    # scoring volumes (e.g., NBA ~100pts vs Soccer ~2 goals)
+    
+    print("\n" + "=" * 80)
+    print("CALCULATING Z-SCORES FOR CROSS-LEAGUE COMPARISON")
+    print("=" * 80)
+    
+    def calculate_zscore_column(df, col, group_col='League'):
+        """
+        Calculate Z-score for a column within each group.
+        Returns NaN if std=0 or group has only 1 data point.
+        """
+        result = pd.Series(index=df.index, dtype=float)
+        
+        for league in df[group_col].unique():
+            mask = df[group_col] == league
+            group_data = df.loc[mask, col]
+            
+            if len(group_data) <= 1:
+                # Cannot calculate Z-score with only 1 data point
+                result.loc[mask] = np.nan
+            else:
+                mean_val = group_data.mean()
+                std_val = group_data.std(ddof=1)  # Sample std dev
+                
+                if std_val == 0 or pd.isna(std_val):
+                    # All values identical, Z-score undefined
+                    result.loc[mask] = 0.0
+                else:
+                    result.loc[mask] = (group_data - mean_val) / std_val
+        
+        return result
+    
+    # Calculate Z-scores for each metric, grouped by League
+    final_df['WIM_Z'] = calculate_zscore_column(final_df, 'WIM')
+    final_df['WIM_TB_Z'] = calculate_zscore_column(final_df, 'WIM_TB')
+    final_df['NS_Z'] = calculate_zscore_column(final_df, 'Noll_Scully')
+    
+    print("Z-Scores calculated for WIM, WIM_TB, and Noll-Scully.")
+    print("  -> WIM_Z: Standard deviations from league's historical WIM mean")
+    print("  -> WIM_TB_Z: Standard deviations from league's historical WIM_TB mean")
+    print("  -> NS_Z: Standard deviations from league's historical Noll-Scully mean")
+    
+    # ==========================================================================
+    # 3. REPORTING
+    # ==========================================================================
+    
+    # Sort for cleaner viewing
+    final_df = final_df.sort_values(['League', 'Season'])
+    
+    print("\n" + "=" * 80)
+    print("FULL RESULTS TABLE")
+    print("=" * 80)
+    # Formatting helper for cleaner output
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.float_format', '{:.4f}'.format)
+    
+    # Reorder columns for logical reading (include Z-scores)
+    cols_order = ['League', 'Season', 'Teams', 'WIM', 'WIM_Z', 'WIM_TB', 'WIM_TB_Z', 'Noll_Scully', 'NS_Z', 'WinPct_SD', 'HHI']
+    print(final_df[cols_order].to_string(index=False))
+    
+    # Save results to CSV
+    output_path = os.path.join(clean_data_dir, "wim_full_results.csv")
+    final_df.to_csv(output_path, index=False)
+    print(f"\nResults saved to: {output_path}")
+
+    # ==========================================================================
+    # 3b. LEAGUE AVERAGES TABLE
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("LEAGUE AVERAGES (All Seasons)")
+    print("=" * 80)
+    
+    # Group by League and calculate mean for each metric
+    avg_cols = ['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD', 'HHI']
+    league_averages = final_df.groupby('League')[avg_cols].mean()
+    
+    # Sort by WIM descending (most imbalanced at top)
+    league_averages = league_averages.sort_values('WIM', ascending=False)
+    
+    print(league_averages.to_string())
+    
+    # Save league averages to CSV
+    avg_output_path = os.path.join(clean_data_dir, "wim_league_averages.csv")
+    league_averages.to_csv(avg_output_path)
+    print(f"\nLeague averages saved to: {avg_output_path}")
+
+    # ==========================================================================
+    # 4. CORRELATION CHECK (The "Hypothesis 3" Test)
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("HYPOTHESIS 3 TEST: CORRELATION MATRIX")
+    print("=" * 80)
+    
+    # Calculate correlation between WIM and the Competitors
+    # We drop NaNs in case some leagues didn't have Win/Games data
+    corr_matrix = final_df[['WIM', 'WIM_TB', 'Noll_Scully', 'WinPct_SD']].corr()
+    print(corr_matrix)
+    
+    print("-" * 80)
+    wim_ns_corr = corr_matrix.loc['WIM', 'Noll_Scully']
+    print(f"Correlation (WIM vs Noll-Scully): {wim_ns_corr:.4f}")
+    
+    if wim_ns_corr > 0.95:
+        print(">> WARNING: Very high correlation. WIM might be redundant.")
+    elif 0.5 < wim_ns_corr < 0.90:
+        print(">> SWEET SPOT: Strong positive correlation (validity), but distinct enough to add value.")
+    else:
+        print(">> INTERESTING: Low or Negative correlation. WIM is measuring something totally different.")
+
+    # ==========================================================================
+    # 5. VISUALIZATION (Comparison Plot)
+    # ==========================================================================
+    
+    plt.figure(figsize=(12, 7))
+    
+    # Group by League and plot WIM averages
+    # Data extended to 2000/2001 season for AFL, Ligue 1, Premier League
+    
+    leagues = final_df['League'].unique()
+    markers = ['o', 's', '^', 'D', 'v', '<', '>']
+    
+    for i, league in enumerate(leagues):
+        subset = final_df[final_df['League'] == league]
+        plt.plot(subset['Season'], subset['WIM'], 
+                 label=league, 
+                 marker=markers[i % len(markers)], 
+                 linewidth=2)
+    
+    plt.title('WIM (Wetherall Imbalance Measure) - Historical Trend (2000/01–Present)', fontsize=14)
+    plt.ylabel('WIM Score (Higher = More Unbalanced)', fontsize=12)
+    plt.xlabel('Season', fontsize=12)
+    plt.axhline(0, color='black', linewidth=1)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    plot_path = os.path.join(clean_data_dir, 'WIM_Chart.png')
+    plt.savefig(plot_path, dpi=300)
+    print(f"Chart saved to: {plot_path}")
+
+    # ==========================================================================
+    # 6. UNIVERSAL Z-SCORE VISUALIZATION (Cross-League Comparison)
+    # ==========================================================================
+    # This chart normalizes all leagues to their own historical mean/std
+    # so we can compare "relatively unbalanced" seasons across sports
+    
+    plt.figure(figsize=(14, 8))
+    
+    # Use distinct colors for each league
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2']
+    
+    for i, league in enumerate(leagues):
+        subset = final_df[final_df['League'] == league].dropna(subset=['WIM_Z'])
+        if len(subset) > 0:
+            # Shorten league names for legend
+            short_name = league.replace('WIM Raw Data - ', '')
+            plt.plot(subset['Season'], subset['WIM_Z'], 
+                     label=short_name, 
+                     marker=markers[i % len(markers)],
+                     color=colors[i % len(colors)],
+                     linewidth=2,
+                     markersize=6)
+    
+    # Reference lines
+    plt.axhline(0, color='black', linewidth=1.5, label='League Average (0)')
+    plt.axhline(2, color='red', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (+2σ)')
+    plt.axhline(-2, color='green', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (-2σ)')
+    
+    # Shaded regions for context
+    plt.axhspan(-1, 1, alpha=0.1, color='gray', label='Normal Range (±1σ)')
+    
+    plt.title('Universal WIM Z-Score: Cross-League Competitive Balance Comparison', fontsize=14)
+    plt.ylabel('WIM Z-Score (Std Deviations from League Mean)', fontsize=12)
+    plt.xlabel('Season', fontsize=12)
+    plt.legend(loc='upper left', fontsize=9, ncol=2)
+    plt.grid(True, alpha=0.3)
+    
+    # Set y-axis limits to show outliers clearly
+    plt.ylim(-3.5, 3.5)
+    
+    z_plot_path = os.path.join(clean_data_dir, 'WIM_Universal_Z.png')
+    plt.savefig(z_plot_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    print(f"Universal Z-Score chart saved to: {z_plot_path}")
+    
+    # ==========================================================================
+    # 6b. PREMIER LEAGUE ONLY Z-SCORE CHART
+    # ==========================================================================
+    # Same style as Universal chart, but focused solely on Premier League
+    
+    prem_mask = final_df['League'].str.contains('Prem', case=False, na=False)
+    prem_df = final_df[prem_mask].dropna(subset=['WIM_Z'])
+    
+    if len(prem_df) > 0:
+        plt.figure(figsize=(14, 8))
+        
+        prem_label = 'Premier League' if 'Prem' in prem_df['League'].iloc[0] else prem_df['League'].iloc[0]
+        plt.plot(prem_df['Season'], prem_df['WIM_Z'], 
+                 label=prem_label, 
+                 marker='>', color='#e377c2',
+                 linewidth=2.5, markersize=8)
+        
+        # Reference lines (same as Universal chart)
+        plt.axhline(0, color='black', linewidth=1.5, label='League Average (0)')
+        plt.axhline(2, color='red', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (+2σ)')
+        plt.axhline(-2, color='green', linewidth=1, linestyle='--', alpha=0.7, label='Outlier Threshold (-2σ)')
+        plt.axhspan(-1, 1, alpha=0.1, color='gray', label='Normal Range (±1σ)')
+        
+        plt.title('WIM Z-Score: Premier League Competitive Balance Over Time', fontsize=14)
+        plt.ylabel('WIM Z-Score (Std Deviations from League Mean)', fontsize=12)
+        plt.xlabel('Season', fontsize=12)
+        plt.legend(loc='upper left', fontsize=9)
+        plt.grid(True, alpha=0.3)
+        plt.ylim(-3.5, 3.5)
+        
+        prem_plot_path = os.path.join(clean_data_dir, 'WIM_PremLeague_Z.png')
+        plt.savefig(prem_plot_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        print(f"Premier League Z-Score chart saved to: {prem_plot_path}")
+    else:
+        print("No Premier League data found for Z-Score chart.")
+    
+    # ==========================================================================
+    # 7. Z-SCORE SUMMARY TABLE (Identify Outlier Seasons)
+    # ==========================================================================
+    
+    print("\n" + "=" * 80)
+    print("OUTLIER SEASONS (|Z| > 2.0) - Historically Unusual Imbalance")
+    print("=" * 80)
+    
+    outliers = final_df[np.abs(final_df['WIM_Z']) > 2.0][['League', 'Season', 'WIM', 'WIM_Z']].copy()
+    outliers = outliers.sort_values('WIM_Z', ascending=False)
+    
+    if len(outliers) > 0:
+        print(outliers.to_string(index=False))
+    else:
+        print("No outlier seasons found (all within ±2 standard deviations).")
 
 if __name__ == "__main__":
-    results = main()
+    main()

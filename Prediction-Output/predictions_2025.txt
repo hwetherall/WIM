@@ -1,0 +1,22 @@
+======================================================================
+PRE-REGISTERED PREDICTIONS -- WIM Structural Lock Hypothesis
+Generated: 2026-02-15 14:37:04
+Season: EPL 2025-2026
+Data through: Matchday 25
+======================================================================
+
+Current WIM_Z: -1.60
+Current Leader: Arsenal (+6 points)
+
+PREDICTION 1 -- Title Race:
+  Title race is wide open. Compressed league structure.
+  Confidence: VERY LOW that Arsenal holds on (WIM_Z = -1.60)
+
+PREDICTION 2 -- Relegation:
+  Current bottom 3: West Ham, Burnley, Wolves
+  League is compressed enough that survival is possible.
+
+PREDICTION 3 -- Betting Regime:
+  LOW/NORMAL WIM regime: underdogs may outperform market odds.
+
+======================================================================
