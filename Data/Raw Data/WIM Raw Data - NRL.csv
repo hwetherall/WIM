@@ -1,0 +1,320 @@
+Season,Team,PointsFor,PointsAgainst,Wins,GamesPlayed,GamesPerSeason
+2005,Parramatta Eels,704,456,16,24,24
+2005,St George Illawarra Dragons,655,510,16,24,24
+2005,Brisbane Broncos,597,484,15,24,24
+2005,Wests Tigers,676,575,14,24,24
+2005,North Queensland Cowboys,639,563,14,24,24
+2005,Melbourne Storm,640,462,13,24,24
+2005,Cronulla Sharks,550,564,12,24,24
+2005,Manly Sea Eagles,554,632,12,24,24
+2005,Sydney Roosters,488,487,11,24,24
+2005,Penrith Panthers,554,554,11,24,24
+2005,New Zealand Warriors,515,528,10,24,24
+2005,Canterbury Bulldogs,472,670,9,24,24
+2005,South Sydney Rabbitohs,482,700,9,24,24
+2005,Canberra Raiders,465,606,9,24,24
+2005,Newcastle Knights,467,667,8,24,24
+2006,Melbourne Storm,605,404,20,24,24
+2006,Canterbury Bulldogs,596,494,16,24,24
+2006,Brisbane Broncos,577,433,16,24,24
+2006,Newcastle Knights,611,519,16,24,24
+2006,Manly Sea Eagles,583,459,15,24,24
+2006,St George Illawarra Dragons,519,481,14,24,24
+2006,Canberra Raiders,523,523,13,24,24
+2006,Parramatta Eels,507,531,12,24,24
+2006,North Queensland Cowboys,495,492,11,24,24
+2006,New Zealand Warriors,487,466,12,24,24
+2006,Penrith Panthers,515,527,10,24,24
+2006,Cronulla Sharks,451,574,9,24,24
+2006,Wests Tigers,489,567,10,24,24
+2006,Sydney Roosters,454,609,8,24,24
+2006,South Sydney Rabbitohs,433,636,3,24,24
+2007,Melbourne Storm,707,290,21,24,24
+2007,Manly Sea Eagles,566,433,18,24,24
+2007,North Queensland Cowboys,547,452,15,24,24
+2007,New Zealand Warriors,588,491,13,24,24
+2007,Parramatta Eels,571,491,13,24,24
+2007,Sydney Roosters,582,536,13,24,24
+2007,South Sydney Rabbitohs,519,499,12,24,24
+2007,Brisbane Broncos,511,566,11,24,24
+2007,Canterbury Bulldogs,535,510,12,24,24
+2007,Wests Tigers,518,565,11,24,24
+2007,St George Illawarra Dragons,447,499,9,24,24
+2007,Cronulla Sharks,427,529,8,24,24
+2007,Gold Coast Titans,502,552,10,24,24
+2007,Penrith Panthers,429,631,8,24,24
+2007,Canberra Raiders,417,572,7,24,24
+2007,Newcastle Knights,391,709,4,24,24
+2008,Manly Sea Eagles,733,492,17,24,24
+2008,Melbourne Storm,584,354,17,24,24
+2008,Cronulla Sharks,451,384,17,24,24
+2008,Brisbane Broncos,565,451,14,24,24
+2008,Canterbury Bulldogs,588,514,14,24,24
+2008,Sydney Roosters,537,582,14,24,24
+2008,St George Illawarra Dragons,503,429,13,24,24
+2008,New Zealand Warriors,497,523,13,24,24
+2008,Newcastle Knights,535,534,12,24,24
+2008,West Tigers,513,543,11,24,24
+2008,Parramatta Eels,531,562,11,24,24
+2008,Penrith Panthers,517,530,10,24,24
+2008,Canberra Raiders,504,581,10,24,24
+2008,North Queensland Cowboys,560,710,9,24,24
+2008,South Sydney Rabbitohs,471,540,8,24,24
+2008,Gold Coast Titans,449,632,4,24,24
+2009,St George Illawarra Dragons,548,329,17,24,24
+2009,Canterbury Bulldogs,575,428,18,24,24
+2009,Gold Coast Titans,514,467,16,24,24
+2009,Melbourne Storm,505,348,14,24,24
+2009,Manly Sea Eagles,549,439,14,24,24
+2009,Brisbane Broncos,511,566,14,24,24
+2009,Newcastle Knights,508,491,13,24,24
+2009,Parramatta Eels,476,473,12,24,24
+2009,Wests Tigers,558,483,12,24,24
+2009,South Sydney Rabbitohs,566,549,11,24,24
+2009,Penrith Panthers,515,589,11,24,24
+2009,North Queensland Cowboys,558,474,11,24,24
+2009,Canberra Raiders,489,510,9,24,24
+2009,New Zealand Warriors,377,545,7,24,24
+2009,Cronulla Sharks,359,568,5,24,24
+2009,Sydney Roosters,382,681,5,24,24
+2010,St George Illawarra Dragons,587,406,17,24,24
+2010,Penrith Panthers,634,527,15,24,24
+2010,Wests Tigers,642,574,15,24,24
+2010,Sydney Roosters,596,536,14,24,24
+2010,Canterbury Bulldogs,610,534,14,24,24
+2010,Gold Coast Titans,528,520,13,24,24
+2010,New Zealand Warriors,558,538,12,24,24
+2010,South Sydney Rabbitohs,548,532,12,24,24
+2010,Manly Sea Eagles,481,456,12,24,24
+2010,Cronulla Sharks,487,542,11,24,24
+2010,Canberra Raiders,581,675,11,24,24
+2010,Newcastle Knights,514,492,10,24,24
+2010,Parramatta Eels,458,548,10,24,24
+2010,Brisbane Broncos,456,541,10,24,24
+2010,North Queensland Cowboys,506,665,9,24,24
+2010,Melbourne Storm,489,477,8,24,24
+2011,Melbourne Storm,694,405,19,24,24
+2011,Manly Sea Eagles,602,479,18,24,24
+2011,Brisbane Broncos,586,480,18,24,24
+2011,St George Illawarra Dragons,528,437,16,24,24
+2011,New Zealand Warriors,504,494,14,24,24
+2011,North Queensland Cowboys,550,548,14,24,24
+2011,Wests Tigers,564,586,14,24,24
+2011,Cronulla Sharks,462,516,12,24,24
+2011,Sydney Roosters,567,554,13,24,24
+2011,South Sydney Rabbitohs,488,585,11,24,24
+2011,Canterbury Bulldogs,516,572,10,24,24
+2011,Penrith Panthers,447,557,11,24,24
+2011,Canberra Raiders,558,623,10,24,24
+2011,Newcastle Knights,482,539,9,24,24
+2011,Parramatta Eels,491,588,8,24,24
+2011,Gold Coast Titans,457,557,6,24,24
+2012,Canterbury Bulldogs,721,507,18,24,24
+2012,Melbourne Storm,579,449,17,24,24
+2012,South Sydney Rabbitohs,693,547,16,24,24
+2012,Manly Sea Eagles,733,523,16,24,24
+2012,North Queensland Cowboys,658,547,15,24,24
+2012,Canberra Raiders,615,576,13,24,24
+2012,Cronulla Sharks,532,651,12,24,24
+2012,Brisbane Broncos,554,513,12,24,24
+2012,St George Illawarra Dragons,480,572,11,24,24
+2012,Newcastle Knights,551,626,10,24,24
+2012,Gold Coast Titans,581,675,10,24,24
+2012,Penrith Panthers,540,621,10,24,24
+2012,New Zealand Warriors,532,642,10,24,24
+2012,Wests Tigers,570,584,10,24,24
+2012,Sydney Roosters,513,602,8,24,24
+2012,Parramatta Eels,437,763,6,24,24
+2013,Sydney Roosters,660,397,18,24,24
+2013,South Sydney Rabbitohs,662,424,18,24,24
+2013,Melbourne Storm,576,433,16,24,24
+2013,Manly Sea Eagles,585,455,15,24,24
+2013,Cronulla Sharks,480,452,14,24,24
+2013,Canterbury Bulldogs,560,531,13,24,24
+2013,Newcastle Knights,563,531,12,24,24
+2013,North Queensland Cowboys,585,592,12,24,24
+2013,Gold Coast Titans,524,563,11,24,24
+2013,Penrith Panthers,470,553,11,24,24
+2013,New Zealand Warriors,512,576,11,24,24
+2013,Brisbane Broncos,521,515,10,24,24
+2013,Canberra Raiders,529,618,10,24,24
+2013,Wests Tigers,484,606,10,24,24
+2013,Parramatta Eels,408,632,5,24,24
+2013,St George Illawarra Dragons,351,540,5,24,24
+2014,Sydney Roosters,617,403,16,24,24
+2014,Manly Sea Eagles,670,588,16,24,24
+2014,South Sydney Rabbitohs,685,453,15,24,24
+2014,Penrith Panthers,506,482,15,24,24
+2014,North Queensland Cowboys,665,548,14,24,24
+2014,Melbourne Storm,540,480,14,24,24
+2014,Canterbury Bulldogs,572,504,13,24,24
+2014,Brisbane Broncos,608,550,12,24,24
+2014,New Zealand Warriors,504,566,12,24,24
+2014,Canberra Raiders,585,631,10,24,24
+2014,Wests Tigers,587,620,10,24,24
+2014,Parramatta Eels,503,574,10,24,24
+2014,St George Illawarra Dragons,468,572,9,24,24
+2014,Cronulla Sharks,499,639,8,24,24
+2014,Gold Coast Titans,497,620,8,24,24
+2014,Newcastle Knights,464,574,7,24,24
+2015,Sydney Roosters,644,398,18,24,24
+2015,Brisbane Broncos,571,446,17,24,24
+2015,North Queensland Cowboys,640,438,17,24,24
+2015,Melbourne Storm,547,437,14,24,24
+2015,Canterbury Bulldogs,548,493,14,24,24
+2015,Cronulla Sharks,580,521,14,24,24
+2015,South Sydney Rabbitohs,532,525,13,24,24
+2015,St George Illawarra Dragons,518,513,12,24,24
+2015,Manly Sea Eagles,567,582,11,24,24
+2015,Canberra Raiders,577,652,10,24,24
+2015,Penrith Panthers,437,477,9,24,24
+2015,Parramatta Eels,492,554,9,24,24
+2015,New Zealand Warriors,458,573,9,24,24
+2015,Gold Coast Titans,517,592,9,24,24
+2015,Wests Tigers,495,554,8,24,24
+2015,Newcastle Knights,485,734,5,24,24
+2016,Melbourne Storm,603,356,19,24,24
+2016,Canterbury Bulldogs,575,441,17,24,24
+2016,North Queensland Cowboys,563,479,16,24,24
+2016,Brisbane Broncos,563,468,15,24,24
+2016,Cronulla Sharks,561,463,15,24,24
+2016,Penrith Panthers,544,507,14,24,24
+2016,Canberra Raiders,660,569,14,24,24
+2016,Parramatta Eels,547,507,13,24,24
+2016,Wests Tigers,506,551,11,24,24
+2016,New Zealand Warriors,513,585,10,24,24
+2016,Sydney Roosters,519,509,10,24,24
+2016,South Sydney Rabbitohs,501,549,9,24,24
+2016,St George Illawarra Dragons,479,520,9,24,24
+2016,Manly Sea Eagles,466,602,8,24,24
+2016,Gold Coast Titans,521,564,8,24,24
+2016,Newcastle Knights,432,711,1,24,24
+2017,Melbourne Storm,636,389,20,24,24
+2017,Sydney Roosters,611,409,17,24,24
+2017,Brisbane Broncos,597,433,16,24,24
+2017,North Queensland Cowboys,628,494,15,24,24
+2017,Parramatta Eels,566,459,16,24,24
+2017,Cronulla Sharks,589,512,15,24,24
+2017,Manly Sea Eagles,605,488,14,24,24
+2017,Penrith Panthers,505,474,13,24,24
+2017,Canterbury Bulldogs,526,542,10,24,24
+2017,Canberra Raiders,521,527,10,24,24
+2017,St George Illawarra Dragons,483,451,10,24,24
+2017,South Sydney Rabbitohs,444,573,9,24,24
+2017,New Zealand Warriors,459,594,8,24,24
+2017,Wests Tigers,421,574,7,24,24
+2017,Gold Coast Titans,455,676,7,24,24
+2017,Newcastle Knights,476,752,5,24,24
+2018,Melbourne Storm,704,282,20,24,24
+2018,Sydney Roosters,604,364,16,24,24
+2018,South Sydney Rabbitohs,640,415,16,24,24
+2018,Cronulla Sharks,529,369,16,24,24
+2018,Penrith Panthers,507,376,15,24,24
+2018,Canterbury Bulldogs,456,510,13,24,24
+2018,Brisbane Broncos,553,520,13,24,24
+2018,St George Illawarra Dragons,574,534,13,24,24
+2018,New Zealand Warriors,534,513,12,24,24
+2018,Wests Tigers,440,468,12,24,24
+2018,North Queensland Cowboys,519,512,11,24,24
+2018,Parramatta Eels,433,573,10,24,24
+2018,Canberra Raiders,564,643,10,24,24
+2018,Newcastle Knights,497,643,9,24,24
+2018,Manly Sea Eagles,445,572,7,24,24
+2018,Gold Coast Titans,414,640,4,24,24
+2019,Melbourne Storm,597,352,20,24,24
+2019,Sydney Roosters,629,345,17,24,24
+2019,South Sydney Rabbitohs,629,384,16,24,24
+2019,Canberra Raiders,543,414,15,24,24
+2019,Manly Sea Eagles,502,462,14,24,24
+2019,Brisbane Broncos,467,458,13,24,24
+2019,Cronulla Sharks,540,529,12,24,24
+2019,Parramatta Eels,372,407,12,24,24
+2019,Wests Tigers,388,446,11,24,24
+2019,New Zealand Warriors,349,460,10,24,24
+2019,North Queensland Cowboys,453,535,9,24,24
+2019,Canterbury Bulldogs,310,462,9,24,24
+2019,Penrith Panthers,367,424,8,24,24
+2019,Newcastle Knights,391,400,8,24,24
+2019,St George Illawarra Dragons,374,525,7,24,24
+2019,Gold Coast Titans,369,477,4,24,24
+2020,Penrith Panthers,328,204,18,20,20
+2020,Melbourne Storm,317,178,16,20,20
+2020,Parramatta Eels,341,233,15,20,20
+2020,Sydney Roosters,346,222,14,20,20
+2020,Canberra Raiders,294,251,14,20,20
+2020,South Sydney Rabbitohs,377,291,12,20,20
+2020,Newcastle Knights,260,286,12,20,20
+2020,Cronulla Sharks,304,274,10,20,20
+2020,Brisbane Broncos,247,364,10,20,20
+2020,Wests Tigers,294,367,9,20,20
+2020,Gold Coast Titans,303,347,9,20,20
+2020,North Queensland Cowboys,312,352,8,20,20
+2020,Canterbury Bulldogs,234,332,7,20,20
+2020,Manly Sea Eagles,210,330,6,20,20
+2020,St George Illawarra Dragons,266,355,5,20,20
+2020,New Zealand Warriors,214,299,5,20,20
+2021,Melbourne Storm,631,262,21,24,24
+2021,Penrith Panthers,664,259,21,24,24
+2021,South Sydney Rabbitohs,707,436,20,24,24
+2021,Manly Sea Eagles,636,491,16,24,24
+2021,Sydney Roosters,535,452,16,24,24
+2021,Parramatta Eels,557,426,15,24,24
+2021,Newcastle Knights,552,476,12,24,24
+2021,Gold Coast Titans,538,539,12,24,24
+2021,Cronulla Sharks,504,532,10,24,24
+2021,Canberra Raiders,452,492,10,24,24
+2021,St George Illawarra Dragons,465,606,8,24,24
+2021,New Zealand Warriors,405,456,8,24,24
+2021,Wests Tigers,435,574,8,24,24
+2021,Brisbane Broncos,447,573,7,24,24
+2021,North Queensland Cowboys,527,622,7,24,24
+2021,Canterbury Bulldogs,300,544,3,24,24
+2022,Penrith Panthers,635,382,20,24,24
+2022,Cronulla Sharks,552,417,18,24,24
+2022,North Queensland Cowboys,682,442,17,24,24
+2022,Parramatta Eels,493,457,16,24,24
+2022,Melbourne Storm,542,427,15,24,24
+2022,Sydney Roosters,535,469,15,24,24
+2022,Brisbane Broncos,523,467,15,24,24
+2022,South Sydney Rabbitohs,540,532,13,24,24
+2022,Canberra Raiders,517,548,13,24,24
+2022,St George Illawarra Dragons,492,615,12,24,24
+2022,Manly Sea Eagles,581,619,9,24,24
+2022,Gold Coast Titans,549,626,9,24,24
+2022,New Zealand Warriors,429,517,8,24,24
+2022,Wests Tigers,381,589,4,24,24
+2022,Newcastle Knights,389,537,6,24,24
+2022,Canterbury Bulldogs,365,572,5,24,24
+2023,Penrith Panthers,587,394,18,24,24
+2023,Brisbane Broncos,639,438,18,24,24
+2023,Melbourne Storm,610,451,16,24,24
+2023,New Zealand Warriors,582,454,16,24,24
+2023,Newcastle Knights,617,567,14,24,24
+2023,Cronulla Sharks,594,459,14,24,24
+2023,Sydney Roosters,581,514,13,24,24
+2023,Canberra Raiders,546,575,13,24,24
+2023,South Sydney Rabbitohs,533,486,12,24,24
+2023,Parramatta Eels,472,460,12,24,24
+2023,North Queensland Cowboys,555,561,12,24,24
+2023,Dolphins,549,609,9,24,24
+2023,Manly Sea Eagles,503,559,9,24,24
+2023,Titans,489,595,8,24,24
+2023,Wests Tigers,383,602,4,24,24
+2023,St George Illawarra Dragons,447,547,5,24,24
+2024,Melbourne Storm,604,347,19,24,24
+2024,Penrith Panthers,546,337,17,24,24
+2024,Sydney Roosters,583,355,16,24,24
+2024,Brisbane Broncos,609,421,15,24,24
+2024,Canterbury Bulldogs,539,375,14,24,24
+2024,Cronulla Sharks,535,388,14,24,24
+2024,North Queensland Cowboys,570,497,14,24,24
+2024,Manly Sea Eagles,550,488,13,24,24
+2024,Canberra Raiders,472,438,12,24,24
+2024,New Zealand Warriors,482,479,12,24,24
+2024,Dolphins,498,508,11,24,24
+2024,St George Illawarra Dragons,475,502,11,24,24
+2024,South Sydney Rabbitohs,470,551,10,24,24
+2024,Parramatta Eels,437,543,10,24,24
+2024,Newcastle Knights,466,559,8,24,24
+2024,Wests Tigers,381,578,4,24,24
+2024,Gold Coast Titans,487,542,8,24,24
