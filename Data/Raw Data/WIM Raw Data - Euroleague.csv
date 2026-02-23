@@ -1,0 +1,533 @@
+Year,Team,For,Agn,Wins,GamesPlayed
+2000,Kinder Bologna,1863.4,1652.2,19,22
+2000,AEK Athens,1457.3,1421.2,13,19
+2000,Paf Wennington Bologna,1411.2,1393.2,12,18
+2000,Real Madrid Teka,1252.5,1132.5,10,15
+2000,FC Barcelona,1023.6,942.0,8,12
+2000,TAU Cerámica,1777.9,1662.9,15,23
+2000,Olympiacos,1198.4,1090.6,9,14
+2000,PAOK,1067.3,994.5,8,13
+2000,Bennetton Basket,1267.5,1186.5,9,15
+2000,Union Olimpija,1203.0,1134.0,9,15
+2000,Budućnost,969.6,986.4,7,12
+2000,Peristeri,987.6,948.0,7,12
+2000,Žalgiris,997.2,957.6,6,12
+2000,Muller Verona,1095.6,1044.0,6,12
+2000,Adecco Estudiantes,969.6,1018.8,4,12
+2000,Lugano Tigers,777.0,914.0,3,10
+2000,Hapoel Bank Yahav Jerusalem,784.0,881.0,3,10
+2000,Cibona Zagreb,910.8,982.8,3,12
+2000,Spirou Charleroi,769.0,857.0,2,10
+2000,Spartak Saint Petersburg,778.0,840.0,2,10
+2000,Zadar,840.0,859.0,2,10
+2000,Haribo London Towers,775.0,878.0,1,10
+2000,Opel Skyliners,696.0,856.0,1,10
+2000,Ovarense Aerosoles,746.0,983.0,0,10
+2001,Panathinaikos,1843.6,1698.4,19,22
+2001,Kinder Bologna,1795.2,1566.4,17,22
+2001,Bennetton Basket,1827.0,1713.6,15,21
+2001,FC Barcelona,1710.0,1534.0,14,20
+2001,Olympiacos,1686.0,1550.0,14,20
+2001,Maccabi Playtika Tel Aviv,1585.5,1474.2,14,21
+2001,TAU Cerámica,1716.0,1530.0,13,20
+2001,Anadolu Efes,1566.0,1514.0,12,20
+2001,Real Madrid,1712.0,1652.0,12,20
+2001,Opel Skyliners,1037.4,1059.8,8,14
+2001,ASVEL Basket,1146.6,1135.4,8,14
+2001,AEK Athens,1626.0,1578.0,11,20
+2001,CSKA Moscow,1708.0,1674.0,11,20
+2001,Union Olimpija,1536.0,1478.0,10,20
+2001,Skipper Bologna,1676.0,1660.0,10,20
+2001,Fenerbahçe Beko,1500.0,1512.0,10,20
+2001,Ural Great Perm,1782.0,1802.0,10,20
+2001,Scavolini Pesaro,1612.0,1670.0,10,20
+2001,Krka,1244.6,1222.2,7,14
+2001,Élan Béarnais Pau-Orthez,1125.6,1114.4,7,14
+2001,Unicaja Málaga,1054.2,1051.4,6,14
+2001,Partizan,1138.2,1191.4,6,14
+2001,Žalgiris,1054.2,1097.6,5,14
+2001,Cibona Zagreb,1110.2,1164.8,5,14
+2001,Śląsk Wrocław,1001.0,1061.2,4,14
+2001,Spirou Charleroi,1048.6,1181.6,3,14
+2001,Peristeri,1051.4,1157.8,3,14
+2001,Telindus Oostende,1138.2,1247.4,3,14
+2001,Budućnost,1107.4,1257.2,3,14
+2001,Alba Berlin,1065.4,1153.6,3,14
+2001,Zadar,1156.4,1307.6,2,14
+2001,Kinder London Towers,910.0,1265.6,0,14
+2002,Bennetton Basket,1905.2,1698.4,18,22
+2002,FC Barcelona,1738.0,1608.2,18,22
+2002,CSKA Moscow,1795.2,1557.6,17,22
+2002,Panathinaikos,1586.0,1546.0,14,20
+2002,Anadolu Efes,1498.0,1430.0,12,20
+2002,Fenerbahçe Beko,1596.0,1548.0,12,20
+2002,Union Olimpija,1550.0,1490.0,12,20
+2002,Maccabi Playtika Tel Aviv,1666.0,1558.0,11,20
+2002,TAU Cerámica,1628.0,1606.0,11,20
+2002,Skipper Bologna,1536.0,1536.0,11,20
+2002,Montepaschi Siena,1782.0,1718.2,11,22
+2002,Olympiacos,1494.0,1460.0,10,20
+2002,Cibona Zagreb,1514.0,1618.0,9,20
+2002,Élan Béarnais Pau-Orthez,1076.6,1124.2,6,14
+2002,Real Madrid,1093.4,1113.0,6,14
+2002,Unicaja Málaga,1534.0,1574.0,8,20
+2002,Žalgiris,1141.0,1195.6,5,14
+2002,Śląsk Wrocław,1038.8,1125.6,5,14
+2002,ASVEL Basket,1550.0,1614.0,7,20
+2002,Virtus Bologna,1550.0,1684.0,6,20
+2002,Partizan,1108.8,1183.0,4,14
+2002,Alba Berlin,1064.0,1171.8,4,14
+2002,Budućnost,1107.4,1296.4,2,14
+2002,AEK Athens,999.6,1097.6,1,14
+2003,CSKA Moscow,1777.6,1606.0,17,22
+2003,Maccabi Playtika Tel Aviv,1925.0,1733.6,17,22
+2003,Anadolu Efes,1494.0,1392.0,14,20
+2003,FC Barcelona,1532.0,1390.0,14,20
+2003,Bennetton Basket,1694.0,1560.0,14,20
+2003,TAU Cerámica,1688.0,1604.0,13,20
+2003,Pamesa Valencia,1568.0,1510.0,13,20
+2003,Skipper Bologna,1867.8,1850.2,14,22
+2003,Montepaschi Siena,1777.6,1729.2,11,22
+2003,Cibona Zagreb,1544.0,1550.0,10,20
+2003,Žalgiris,1662.0,1650.0,9,20
+2003,Panathinaikos,1602.0,1620.0,9,20
+2003,Fenerbahçe Beko,1472.0,1556.0,9,20
+2003,Partizan,1080.8,1078.0,6,14
+2003,Śląsk Wrocław,1110.2,1163.4,6,14
+2003,AEK Athens,1065.4,1099.0,6,14
+2003,Élan Béarnais Pau-Orthez,1594.0,1616.0,8,20
+2003,Olympiacos,1546.0,1586.0,8,20
+2003,Union Olimpija,1532.0,1592.0,7,20
+2003,Lottomatica Roma,996.8,1090.6,4,14
+2003,Unicaja Málaga,1051.4,1111.6,4,14
+2003,Alba Berlin,1075.2,1170.4,3,14
+2003,ASVEL Basket,981.4,1132.6,2,14
+2003,Krka,946.4,1188.6,2,14
+2004,CSKA Moscow,2044.8,1840.8,21,24
+2004,Maccabi Playtika Tel Aviv,2208.0,1936.8,20,24
+2004,Climamio Bologna,1670.0,1582.0,16,20
+2004,Anadolu Efes,1750.3,1559.4,17,23
+2004,Panathinaikos,2030.0,1940.0,15,25
+2004,AEK Athens,1538.0,1534.0,11,20
+2004,Winterthur FC Barcelona,1534.0,1524.0,11,20
+2004,Bennetton Basket,1608.2,1535.6,12,22
+2004,TAU Cerámica,2001.6,1920.0,13,24
+2004,Fenerbahçe Beko,1601.6,1625.8,10,22
+2004,Scavolini Pesaro,1742.4,1850.2,10,22
+2004,Cibona Zagreb,1550.0,1562.0,9,20
+2004,Montepaschi Siena,1576.0,1512.0,9,20
+2004,Real Madrid,1534.0,1522.0,9,20
+2004,Union Olimpija,1040.2,1058.4,6,14
+2004,Unicaja Málaga,1030.4,1023.4,6,14
+2004,Žalgiris,1642.0,1702.0,8,20
+2004,Prokom Trefl Sopot,1368.0,1534.0,7,20
+2004,Olympiacos,1016.4,1143.8,4,14
+2004,Opel Skyliners,995.4,1136.8,4,14
+2004,Adecco Estudiantes,1073.8,1108.8,4,14
+2004,Élan Béarnais Pau-Orthez,1069.6,1216.6,3,14
+2004,Partizan,1030.4,1146.6,2,14
+2004,ASVEL Basket,973.0,1121.4,2,14
+2005,CSKA Moscow,1855.2,1612.8,19,24
+2005,Unicaja,1548.0,1450.0,15,20
+2005,TAU Cerámica,1970.0,1800.0,18,25
+2005,Panathinaikos,1899.8,1713.5,16,23
+2005,Maccabi Playtika Tel Aviv,2100.0,1952.5,17,25
+2005,Climamio Bologna,1584.0,1466.0,12,20
+2005,Winterthur FC Barcelona,1910.0,1837.5,14,25
+2005,Lietuvos rytas,1490.0,1440.0,11,20
+2005,Bennetton Basket,1618.0,1622.0,11,20
+2005,Anadolu Efes,1599.4,1584.0,12,22
+2005,Olympiacos,1800.9,1743.4,12,23
+2005,Real Madrid,1669.8,1642.2,12,23
+2005,Žalgiris,1490.0,1528.0,9,20
+2005,Cibona Zagreb,1376.0,1528.0,9,20
+2005,Prokom Trefl Sopot,996.8,1065.4,5,14
+2005,Union Olimpija,1058.4,1079.4,5,14
+2005,Armani Jeans Milano,1036.0,1085.0,5,14
+2005,GHP Bamberg,1350.0,1474.0,7,20
+2005,Fenerbahçe Beko,1416.0,1540.0,6,20
+2005,Élan Béarnais Pau-Orthez,971.6,1103.2,4,14
+2005,Montepaschi Siena,1001.0,1055.6,4,14
+2005,SIG Strasbourg,971.6,1058.4,3,14
+2005,AEK Athens,939.4,1100.4,3,14
+2005,Partizan,978.6,1152.2,2,14
+2006,CSKA Moscow,1935.0,1627.5,22,25
+2006,Panathinaikos,1941.6,1730.4,20,24
+2006,TAU Cerámica,2011.2,1749.6,20,24
+2006,Dynamo Moscow,1650.0,1619.2,14,22
+2006,Winterthur FC Barcelona,1810.1,1702.0,14,23
+2006,Olympiacos,1764.4,1740.2,13,22
+2006,Maccabi Playtika Tel Aviv,1890.6,1883.7,13,23
+2006,Unicaja,1790.0,1882.5,14,25
+2006,Bennetton Basket,1460.0,1418.0,11,20
+2006,Anadolu Efes,1498.0,1490.0,10,20
+2006,Eldo Basket Napoli,1031.8,1093.4,6,14
+2006,Cibona Zagreb,1113.0,1141.0,6,14
+2006,DKV Joventut,1520.0,1514.0,8,20
+2006,Partizan,1532.0,1568.0,8,20
+2006,Élan Béarnais Pau-Orthez,1530.0,1582.0,8,20
+2006,Climamio Bologna,1114.4,1176.0,5,14
+2006,Union Olimpija,1037.4,1124.2,5,14
+2006,Fenerbahçe Beko,1044.4,1087.8,5,14
+2006,Aris Thessaloniki,1422.0,1474.0,7,20
+2006,Lottomatica Roma,1444.0,1512.0,7,20
+2006,Prokom Trefl Sopot,1426.0,1542.0,6,20
+2006,Le Mans Sarthe Basket,985.6,1041.6,4,14
+2006,RheinEnergie Köln,1031.8,1184.4,2,14
+2006,Žalgiris,1062.6,1163.4,2,14
+2007,CSKA Moscow,1982.5,1690.0,20,25
+2007,Panathinaikos,1590.0,1484.0,15,20
+2007,Maccabi Playtika Tel Aviv,2090.0,2012.5,18,25
+2007,Montepaschi Siena,1903.2,1716.0,17,24
+2007,Real Madrid,1626.0,1508.0,14,20
+2007,Lietuvos rytas,1634.0,1506.0,13,20
+2007,Unicaja,1536.0,1426.0,13,20
+2007,TAU Cerámica,2065.0,1907.5,16,25
+2007,AXA FC Barcelona,1708.9,1616.9,13,23
+2007,Olympiacos,1833.1,1773.3,12,23
+2007,Partizan,1750.3,1748.0,11,23
+2007,Žalgiris,1568.0,1606.0,9,20
+2007,Anadolu Efes,1532.0,1538.0,9,20
+2007,Aris Thessaloniki,1502.0,1568.0,9,20
+2007,Fenerbahçe Beko,1711.6,1760.0,9,22
+2007,Lottomatica Roma,1454.0,1546.0,8,20
+2007,Prokom Trefl Sopot,973.0,1142.4,4,14
+2007,Union Olimpija,1030.4,1146.6,4,14
+2007,Chorale Roanne Basket,1104.6,1223.6,4,14
+2007,Cibona Zagreb,1079.4,1188.6,4,14
+2007,Armani Jeans Milano,1015.0,1107.4,3,14
+2007,Le Mans Sarthe Basket,1034.6,1142.4,2,14
+2007,La Fortezza Bologna,1008.0,1215.2,2,14
+2007,Brose Baskets,879.2,1040.2,2,14
+2008,Regal FC Barcelona,1879.1,1580.1,18,23
+2008,Panathinaikos,1755.6,1595.0,17,22
+2008,CSKA Moscow,1581.3,1325.1,16,21
+2008,TAU Cerámica,1812.3,1665.3,14,21
+2008,Montepaschi Siena,1614.0,1538.0,13,20
+2008,Olympiacos,1779.8,1672.0,14,22
+2008,Unicaja,1254.4,1158.4,10,16
+2008,Real Madrid,1544.0,1502.0,12,20
+2008,Maccabi Playtika Tel Aviv,1273.6,1292.8,8,16
+2008,Partizan,1278.7,1320.5,9,19
+2008,Cibona Zagreb,1182.4,1228.8,7,16
+2008,Fenerbahçe Beko,1163.2,1198.4,7,16
+2008,Armani Jeans Milano,1188.8,1273.6,7,16
+2008,Lottomatica Roma,1254.4,1310.4,7,16
+2008,Anadolu Efes,713.0,762.0,4,10
+2008,DKV Joventut,800.0,810.0,4,10
+2008,Panionios,668.0,790.0,3,10
+2008,Air Avellino,754.0,814.0,3,10
+2008,Alba Berlin,1118.4,1249.6,4,16
+2008,Union Olimpija,725.0,818.0,2,10
+2008,SLUC Nancy,706.0,855.0,2,10
+2008,Le Mans Sarthe Basket,747.0,819.0,2,10
+2008,Žalgiris,716.0,812.0,2,10
+2008,Asseco Prokom Sopot,1118.4,1236.8,3,16
+2009,Regal FC Barcelona,1746.8,1425.6,20,22
+2009,CSKA Moscow,1663.2,1562.0,17,22
+2009,Olympiacos,1907.4,1760.0,17,22
+2009,Montepaschi Siena,1310.4,1185.6,11,16
+2009,Panathinaikos,1230.4,1139.2,10,16
+2009,Real Madrid,1540.0,1434.0,12,20
+2009,Unicaja,1233.6,1227.2,9,16
+2009,Khimki,1216.0,1220.8,9,16
+2009,Maccabi Playtika Tel Aviv,1554.0,1480.0,11,20
+2009,Caja Laboral,1556.0,1552.0,11,20
+2009,Partizan,1621.4,1667.6,11,22
+2009,Asseco Prokom Gydnia,1522.0,1602.0,8,20
+2009,Lietuvos rytas,741.0,784.0,4,10
+2009,Lottomatica Roma,713.0,737.0,4,10
+2009,Maroussi,1163.2,1216.0,6,16
+2009,Anadolu Efes,1252.8,1246.4,6,16
+2009,Žalgiris,1126.4,1252.8,5,16
+2009,Fenerbahçe Beko,690.0,799.0,3,10
+2009,ASVEL Basket,680.0,749.0,3,10
+2009,Armani Jeans Milano,724.0,741.0,3,10
+2009,Cibona Zagreb,1123.2,1243.2,4,16
+2009,Entente Orléanaise Loiret,722.0,788.0,2,10
+2009,Union Olimpija,677.0,764.0,1,10
+2009,EWE Baskets Oldenburg,657.0,800.0,1,10
+2010,Montepaschi Siena,1680.8,1524.6,16,22
+2010,Panathinaikos,1720.4,1531.2,16,22
+2010,Maccabi Playtika Tel Aviv,1795.2,1577.4,16,22
+2010,Regal FC Barcelona,1532.0,1422.0,14,20
+2010,Olympiacos,1568.0,1440.0,13,20
+2010,Fenerbahçe Beko,1251.2,1185.6,10,16
+2010,Real Madrid,1679.0,1598.5,14,23
+2010,Caja Laboral,1572.0,1554.0,10,20
+2010,Power Electronics Valencia,1488.9,1491.0,10,21
+2010,Union Olimpija,1182.4,1264.0,7,16
+2010,Anadolu Efes,1182.4,1222.4,7,16
+2010,Lietuvos rytas,1224.0,1257.6,7,16
+2010,Lottomatica Roma,1144.0,1232.0,7,16
+2010,Khimki,764.0,753.0,4,10
+2010,Armani Jeans Milano,737.0,766.0,4,10
+2010,Cholet Basket,705.0,774.0,4,10
+2010,Brose Baskets,714.0,739.0,4,10
+2010,Unicaja,1163.2,1233.6,6,16
+2010,Žalgiris,1180.8,1230.4,6,16
+2010,Partizan,1046.4,1142.4,6,16
+2010,Spirou Charleroi,691.0,766.0,3,10
+2010,CSKA Moscow,683.0,741.0,3,10
+2010,Asseco Prokom Gydnia,689.0,762.0,2,10
+2010,Cibona Zagreb,677.0,858.0,0,10
+2011,FC Barcelona Regal,1572.9,1304.1,19,21
+2011,CSKA Moscow,1837.0,1564.2,19,22
+2011,Real Madrid,1374.4,1262.4,12,16
+2011,Montepaschi Siena,1552.0,1444.0,13,20
+2011,Olympiacos,1683.0,1632.4,14,22
+2011,Panathinaikos,1814.7,1658.3,14,23
+2011,Maccabi Playtika Tel Aviv,1602.3,1568.7,12,21
+2011,UNICS,1318.6,1290.1,10,19
+2011,Gescrap Bizkaia,1510.0,1510.0,10,20
+2011,Mapooro Cantù,1144.0,1169.6,8,16
+2011,Fenerbahçe Beko,1204.8,1217.6,8,16
+2011,Laboral Kutxa,802.0,765.0,5,10
+2011,EA7 Emporio Armani Milano,1116.8,1124.8,7,16
+2011,Galatasaray Medical Park,1116.8,1174.4,7,16
+2011,Partizan,739.0,774.0,4,10
+2011,Anadolu Efes,1108.8,1204.8,6,16
+2011,Brose Baskets,773.0,794.0,3,10
+2011,SLUC Nancy,743.0,833.0,3,10
+2011,Unicaja,1198.4,1294.4,4,16
+2011,Žalgiris,1192.0,1283.2,4,16
+2011,Belgacom Spirou,729.0,832.0,2,10
+2011,Zagreb,718.0,867.0,2,10
+2011,Asseco Prokom Gydnia,618.0,743.0,1,10
+2011,Union Olimpija,580.0,,1,10
+2012,FC Barcelona Regal,2399.4,2083.2,25,31
+2012,CSKA Moscow,2349.0,2157.0,24,30
+2012,Real Madrid,2302.6,2099.6,21,29
+2012,Olympiacos,2390.1,2253.7,22,31
+2012,Unicaja,1749.6,1730.4,15,24
+2012,Maccabi Playtika Tel Aviv,2087.1,1944.0,16,27
+2012,Panathinaikos,2061.9,2024.2,17,29
+2012,Žalgiris,1869.6,1732.8,14,24
+2012,Anadolu Efes,2111.2,2137.3,16,29
+2012,Khimki,1886.4,1804.8,13,24
+2012,Montepaschi Siena,1915.2,1900.8,12,24
+2012,Laboral Kutxa,2167.2,2167.2,13,28
+2012,Alba Berlin,1680.0,1783.2,8,24
+2012,Élan Chalon,782.0,843.0,3,10
+2012,EA7 Emporio Armani Milano,760.0,767.0,3,10
+2012,Union Olimpija,722.0,808.0,3,10
+2012,Mapooro Cantù,708.0,730.0,3,10
+2012,Fenerbahçe Beko,1783.2,1984.8,7,24
+2012,Beşiktaş,1591.2,1852.8,7,24
+2012,Cedevita Zagreb,725.0,849.0,2,10
+2012,Partizan,731.0,772.0,2,10
+2012,Asseco Prokom Gydnia,704.0,801.0,2,10
+2012,Lietuvos rytas,670.0,724.0,2,10
+2012,Brose Baskets,1766.4,1963.2,3,24
+2013,Real Madrid,2656.7,2225.8,25,31
+2013,FC Barcelona,2299.7,2114.1,23,29
+2013,CSKA Moscow,2402.5,2179.3,22,31
+2013,Maccabi Playtika Tel Aviv,2385.0,2274.0,21,30
+2013,Olympiacos,2235.9,2119.9,20,29
+2013,Fenerbahçe Beko,1927.2,1850.4,14,24
+2013,EA7 Emporio Armani Milano,2153.2,2111.2,16,28
+2013,Lokomotiv Kuban,1821.6,1826.4,13,24
+2013,Panathinaikos,2035.8,2053.2,14,29
+2013,Galatasaray Liv Hospital,1971.0,2041.2,13,27
+2013,Unicaja,1788.0,1776.0,11,24
+2013,Laboral Kutxa,1828.8,1879.2,11,24
+2013,Crvena zvezda / Red Star,804.0,779.0,4,10
+2013,Bayern Munich,1857.6,1893.6,9,24
+2013,JSF Nanterre,682.0,753.0,3,10
+2013,Brose Baskets,756.0,829.0,3,10
+2013,Montepaschi Siena,674.0,706.0,3,10
+2013,SIG Strasbourg,705.0,798.0,3,10
+2013,Partizan,1620.0,1783.2,7,24
+2013,Žalgiris,1804.8,1941.6,7,24
+2013,Anadolu Efes,1708.8,1862.4,6,24
+2013,Budivelnyk,737.0,832.0,2,10
+2013,Enea Zastal BC Zielona Góra,707.0,799.0,2,10
+2013,Lietuvos rytas,686.0,820.0,1,10
+2014,CSKA Moscow,2613.0,2268.0,26,30
+2014,Real Madrid,2589.0,2247.0,24,30
+2014,Fenerbahçe Beko,2372.2,2215.6,22,29
+2014,FC Barcelona,2284.8,2077.6,21,28
+2014,Olympiacos,2229.0,2139.0,22,30
+2014,Maccabi Playtika Tel Aviv,2081.7,2092.5,16,27
+2014,UNICS,751.0,721.0,5,10
+2014,Anadolu Efes,2119.6,2144.8,13,28
+2014,Panathinaikos,2102.8,2116.8,13,28
+2014,Alba Berlin,1737.6,1821.6,11,24
+2014,Laboral Kutxa Baskonia,1958.4,1963.2,11,24
+2014,Crvena zvezda / Red Star,1809.6,1788.0,10,24
+2014,Žalgiris,1718.4,1783.2,10,24
+2014,Neptūnas Klaipėda,763.0,857.0,4,10
+2014,EA7 Emporio Armani Milano,1857.6,1987.2,9,24
+2014,Nizhny Novgorod,1884.0,2008.8,8,24
+2014,Unicaja,1843.2,1896.0,8,24
+2014,Cedevita Zagreb,740.0,789.0,3,10
+2014,Valencia Basket,775.0,764.0,3,10
+2014,Galatasaray Liv Hospital,1826.4,1984.8,6,24
+2014,Limoges CSP,702.0,806.0,2,10
+2014,Bayern Munich,806.0,866.0,2,10
+2014,Banco di Sardegna Sassari,758.0,859.0,1,10
+2014,Turów Zgorzelec,773.0,897.0,1,10
+2015,CSKA Moscow,2639.0,2366.4,24,29
+2015,Fenerbahçe Beko,2299.7,2125.7,23,29
+2015,Lokomotiv Kuban,2393.2,2207.2,21,31
+2015,Laboral Kutxa Baskonia,2366.4,2235.9,18,29
+2015,Olympiacos,1843.2,1797.6,14,24
+2015,Panathinaikos,2043.9,1987.2,15,27
+2015,FC Barcelona Lassa,2288.1,2180.8,16,29
+2015,Brose Baskets,1850.4,1807.2,13,24
+2015,Anadolu Efes,1984.8,1910.4,13,24
+2015,Khimki,1963.2,1879.2,12,24
+2015,Unicaja,1732.8,1795.2,11,24
+2015,Real Madrid,2238.3,2222.1,12,27
+2015,Crvena Zvezda Telekom Belgrade,2025.0,2111.4,12,27
+2015,Bayern Munich,763.0,780.0,4,10
+2015,Maccabi Playtika Tel Aviv,750.0,792.0,4,10
+2015,Darüşşafaka Tekfen,1764.0,1824.0,9,24
+2015,Cedevita Zagreb,1788.0,1908.0,8,24
+2015,EA7 Emporio Armani Milano,737.0,797.0,3,10
+2015,SIG Strasbourg,711.0,814.0,3,10
+2015,Limoges CSP,698.0,823.0,3,10
+2015,Pınar Karşıyaka,698.0,772.0,3,10
+2015,Žalgiris,1704.0,1910.4,7,24
+2015,Enea Zastal BC Zielona Góra,664.0,748.0,2,10
+2015,Dinamo Banco di Sardegna Sassari,690.0,839.0,0,10
+2016,CSKA Moscow,3062.5,2800.0,26,35
+2016,Real Madrid,3070.8,2847.6,26,36
+2016,Fenerbahçe Beko,2681.0,2576.0,23,35
+2016,Olympiacos,2863.8,2734.3,23,37
+2016,Panathinaikos Superfoods,2521.2,2465.1,19,33
+2016,Anadolu Efes,2870.0,2891.0,19,35
+2016,Crvena Zvezda mts,2208.0,2205.0,16,30
+2016,Baskonia,2706.0,2646.6,17,33
+2016,Darüşşafaka Tekfen,2689.4,2706.4,17,34
+2016,Žalgiris,2349.0,2391.0,14,30
+2016,FC Barcelona Lassa,2142.0,2241.0,12,30
+2016,Galatasaray Odeabank,2346.0,2475.0,11,30
+2016,Brose Bamberg,2397.0,2430.0,10,30
+2016,Maccabi Playtika Tel Aviv,2340.0,2508.0,10,30
+2016,EA7 Emporio Armani Milano,2421.0,2622.0,8,30
+2016,UNICS,2298.0,2424.0,8,30
+2017,CSKA Moscow,3193.2,2905.2,27,36
+2017,Fenerbahçe Beko,2930.4,2739.6,25,36
+2017,Real Madrid,3088.8,2890.8,24,36
+2017,Žalgiris,2926.8,2876.4,22,36
+2017,Olympiacos,2641.8,2638.4,20,34
+2017,Panathinaikos Superfoods,2699.6,2652.0,20,34
+2017,Khimki,2682.6,2699.6,17,34
+2017,Kirolbet Baskonia,2818.6,2723.4,17,34
+2017,Maccabi Playtika Tel Aviv,2439.0,2529.0,13,30
+2017,Unicaja Malaga,2388.0,2466.0,13,30
+2017,Valencia Basket,2361.0,2448.0,12,30
+2017,FC Barcelona Lassa,2457.0,2403.0,11,30
+2017,Brose Bamberg,2310.0,2445.0,11,30
+2017,Crvena Zvezda mts Belgrade,2334.0,2514.0,11,30
+2017,EA7 Emporio Armani Milano,2451.0,2574.0,10,30
+2017,Anadolu Efes,2322.0,2529.0,7,30
+2018,CSKA Moscow,3128.4,2876.4,29,36
+2018,Fenerbahçe Beko,2998.8,2721.6,28,36
+2018,Real Madrid,3003.0,2723.0,26,35
+2018,Anadolu Efes,3137.6,2926.7,24,37
+2018,FC Barcelona Lassa,2733.5,2688.0,20,35
+2018,Olympiacos,2346.0,2298.0,15,30
+2018,Panathinaikos OPAP,2590.5,2593.8,16,33
+2018,Kirolbet Baskonia,2760.8,2726.8,16,34
+2018,Žalgiris,2577.2,2675.8,16,34
+2018,Bayern Munich,2373.0,2418.0,14,30
+2018,Maccabi Playtika Tel Aviv,2376.0,2337.0,14,30
+2018,AX Armani Exchange Milano,2619.0,2613.0,14,30
+2018,Khimki,2346.0,2451.0,9,30
+2018,Herbalife Gran Canaria,2331.0,2622.0,8,30
+2018,Budućnost VOLI,2229.0,2547.0,6,30
+2018,Darüşşafaka Tekfen,2238.0,2568.0,5,30
+2019,Anadolu Efes,2444.4,2175.6,24,28
+2019,FC Barcelona,2357.6,2192.4,22,28
+2019,Real Madrid,2371.6,2164.4,22,28
+2019,CSKA Moscow,2335.2,2156.0,19,28
+2019,Maccabi Playtika Tel Aviv,2307.2,2167.2,19,28
+2019,Panathinaikos OPAP,2438.8,2433.2,14,28
+2019,Khimki,2394.0,2394.0,13,28
+2019,Fenerbahçe Beko,2186.8,2217.6,13,28
+2019,AX Armani Exchange Milano,2186.8,2265.2,12,28
+2019,Olympiacos,2268.0,2310.0,12,28
+2019,Valencia Basket,2284.8,2304.4,12,28
+2019,Kirolbet Baskonia,2058.0,2156.0,12,28
+2019,Žalgiris,2256.8,2195.2,12,28
+2019,Crvena zvezda mts,2094.4,2150.4,11,28
+2019,LDLC ASVEL,2083.2,2290.4,10,28
+2019,Alba Berlin,2366.0,2480.8,9,28
+2019,Bayern Munich,2069.2,2284.8,8,28
+2019,Zenit Saint Petersburg,2097.2,2240.0,8,28
+2022,Olympiacos,2856.0,2577.2,24,34
+2022,Barça,2750.6,2607.8,23,34
+2022,Real Madrid,2910.4,2699.6,23,34
+2022,AS Monaco,2832.2,2777.8,21,34
+2022,Maccabi Tel Aviv,2842.4,2754.0,20,34
+2022,Partizan Mozzart Bet,2896.8,2811.8,20,34
+2022,Žalgiris,2590.8,2624.8,19,34
+2022,Fenerbahçe Beko,2862.8,2777.8,19,34
+2022,Cazoo Baskonia,2947.8,2856.0,18,34
+2022,Crvena zvezda mts,2624.8,2648.6,17,34
+2022,Anadolu Efes,2822.0,2764.2,17,34
+2022,EA7 Emporio Armani Milan,2543.2,2638.4,15,34
+2022,Valencia Basket,2781.2,2910.4,15,34
+2022,Virtus Segafredo Bologna,2652.0,2811.8,14,34
+2022,Bayern München,2604.4,2740.4,11,34
+2022,Alba Berlin,2723.4,2869.6,11,34
+2022,Panathinaikos,2696.2,2811.8,11,34
+2022,LDLC ASVEL,2526.2,2788.0,8,34
+2023,Real Madrid,2998.8,2743.8,27,34
+2023,Panathinaikos,2774.4,2621.4,23,34
+2023,AS Monaco,2784.6,2689.4,23,34
+2023,Barcelona,2811.8,2692.8,22,34
+2023,Olympiacos,2686.0,2550.0,22,34
+2023,Fenerbahçe Beko,2893.4,2750.6,20,34
+2023,Maccabi Playtika Tel Aviv,2981.8,2947.8,20,34
+2023,Baskonia,2862.8,2886.6,18,34
+2023,Anadolu Efes,2927.4,2910.4,17,34
+2023,Virtus Segafredo Bologna,2726.8,2805.0,17,34
+2023,Partizan Mozzart Bet,2822.0,2835.6,16,34
+2023,EA7 Emporio Armani Milano,2658.8,2655.4,15,34
+2023,Valencia Basket,2580.6,2689.4,14,34
+2023,Žalgiris,2703.0,2703.0,14,34
+2023,Bayern München,2672.4,2791.4,13,34
+2023,Crvena zvezda Meridianbet,2764.2,2815.2,11,34
+2023,LDLC ASVEL,2672.4,2886.6,9,34
+2023,ALBA Berlin,2590.8,2944.4,5,34
+2024,Olympiacos,2954.6,2781.2,24,34
+2024,Fenerbahçe Beko,2828.8,2760.8,23,34
+2024,Panathinaikos AKTOR,3005.6,2852.6,22,34
+2024,AS Monaco,2934.2,2818.6,21,34
+2024,Barcelona,2995.4,2869.6,20,34
+2024,Anadolu Efes,2951.2,2794.8,20,34
+2024,Real Madrid,2893.4,2811.8,20,34
+2024,Paris Basketball,2941.0,2910.4,19,34
+2024,Bayern München,2964.8,2985.2,19,34
+2024,Crvena zvezda Meridianbet,2815.2,2757.4,18,34
+2024,EA7 Emporio Armani Milano,2903.6,2947.8,17,34
+2024,Partizan Mozzart Bet,2781.2,2723.4,16,34
+2024,Žalgiris,2631.6,2686.0,15,34
+2024,Baskonia,2808.4,2842.4,14,34
+2024,LDLC ASVEL,2750.6,2900.2,13,34
+2024,Maccabi Playtika Tel Aviv,2920.6,3053.2,11,34
+2024,Virtus Segafredo Bologna,2692.8,2845.8,9,34
+2024,ALBA Berlin,2675.8,3104.2,5,34
+2025,Fenerbahçe Beko,2230.2,2138.4,20,27
+2025,Olympiacos,2430.0,2259.9,18,27
+2025,Valencia Basket,2531.2,2410.8,18,28
+2025,Real Madrid,2441.6,2332.4,17,28
+2025,Barcelona,2416.4,2377.2,17,28
+2025,Hapoel IBI Tel Aviv,2330.1,2249.1,16,27
+2025,Žalgiris,2483.6,2329.6,16,28
+2025,AS Monaco,2548.0,2410.8,16,28
+2025,Panathinaikos AKTOR,2385.6,2340.8,16,28
+2025,Crvena zvezda Meridianbet,2444.4,2396.8,16,28
+2025,Dubai,2455.6,2455.6,14,28
+2025,EA7 Emporio Armani Milano,2388.4,2410.8,14,28
+2025,Maccabi Rapyd Tel Aviv,2506.0,2573.2,13,28
+2025,Bayern München,2265.2,2343.6,12,28
+2025,Virtus Olidata Bologna,2276.4,2363.2,12,28
+2025,Paris Basketball,2403.0,2473.2,9,27
+2025,Anadolu Efes,2242.8,2343.6,9,28
+2025,Baskonia,2444.4,2567.6,9,28
+2025,Partizan Mozzart Bet,2242.8,2466.8,9,28
+2025,LDLC ASVEL,2189.6,2405.2,7,28
